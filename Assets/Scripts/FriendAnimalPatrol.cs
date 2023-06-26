@@ -77,9 +77,9 @@ public class FriendAnimalPatrol : MonoBehaviour
     {
         int rotationTime = Random.Range(1,3);
         int rotateWait = Random.Range(1,3);
-        int rotateDirection = Random.Range(1,2);
-        int walkWait = Random.Range(1,5);
-        int walkTime = Random.Range(1,3);
+        int rotateDirection = Random.Range(0,2);
+        int walkWait = Random.Range(1,3);
+        int walkTime = Random.Range(3,6);
 
         isWandering = true;
 
@@ -98,9 +98,8 @@ public class FriendAnimalPatrol : MonoBehaviour
             isRotatingLeft = true;
             yield return new WaitForSeconds(rotateWait);
             isRotatingLeft = false;
-        }
-
-        if(rotateDirection == 2)
+        } 
+        else
         {
             isRotatingRight = true;
             yield return new WaitForSeconds(rotateWait);

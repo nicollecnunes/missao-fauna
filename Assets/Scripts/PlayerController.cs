@@ -79,7 +79,9 @@ public class PlayerController : MonoBehaviour
         direction.y = 0f;
 
         if(move.ReadValue<Vector2>().sqrMagnitude > 0.1f && direction.sqrMagnitude > 0.1f)
+        {
             this.rb.rotation = Quaternion.LookRotation(direction, Vector3.up);
+        }
         else
             rb.angularVelocity = Vector3.zero;
     }

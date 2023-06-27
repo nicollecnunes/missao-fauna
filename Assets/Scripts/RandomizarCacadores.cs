@@ -17,7 +17,7 @@ public class RandomizarCacadores : MonoBehaviour
             float posZ = Random.Range(-areaZ/2, areaZ/2);
             Vector3 posicaoCacador = transform.position + new Vector3(posX, 0f, posZ);
             //todo rodar cacadores
-            Instantiate(pfb_cacador, posicaoCacador, Quaternion.Euler(-90f, 0f, 0f));
+            Instantiate(pfb_cacador, posicaoCacador, Quaternion.Euler(0f, 0f, 0f));
         }
     }
 

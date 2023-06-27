@@ -43,8 +43,8 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        forceDirection += move.ReadValue<Vector2>().x * GetCameraRight(playerCamera) * movementForce;
-        forceDirection += move.ReadValue<Vector2>().y * GetCameraForward(playerCamera) * movementForce;
+        forceDirection += move.ReadValue<Vector2>().x * GetCameraRight() * movementForce;
+        forceDirection += move.ReadValue<Vector2>().y * GetCameraForward() * movementForce;
         
 
         rb.AddForce(forceDirection, ForceMode.Impulse);
@@ -59,16 +59,16 @@ public class PlayerController : MonoBehaviour
         LookAt();
     }
 
-    private Vector3 GetCameraRight(Camera playerCamera)
+    private Vector3 GetCameraRight()
     {
-        Vector3 right = playerCamera.transform.right;
+        Vector3 right = Camera.main.transform.right;
         right.y = 0;
         return right.normalized;
     }
 
-    private Vector3 GetCameraForward(Camera playerCamera)
+    private Vector3 GetCameraForward()
     {
-        Vector3 forward = playerCamera.transform.forward;
+        Vector3 forward = Camera.main.transform.forward;
         forward.y = 0;
         return forward.normalized;
     }

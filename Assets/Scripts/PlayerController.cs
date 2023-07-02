@@ -102,7 +102,7 @@ public class PlayerController : MonoBehaviour
             else 
             {
                 hpController.TakeDamage(1);
-                rb.AddForce(-transform.forward * 100f, ForceMode.Impulse);
+                rb.AddForce(-transform.forward * 105f, ForceMode.Impulse);
 
                 if(hpController.health == 0) Die();
             }

@@ -2,9 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
+    // life and points
+    private HealthAndPointsController hpController;
+
     //input fields
     private ThirdPersonInputAssets playerActionAsset;
     private InputAction move;
@@ -24,7 +28,8 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
-        rb = this.GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody>();
+        hpController = GetComponent<HealthAndPointsController>();
         playerActionAsset = new ThirdPersonInputAssets();
     }
 
@@ -45,7 +50,6 @@ public class PlayerController : MonoBehaviour
     {
         forceDirection += move.ReadValue<Vector2>().x * GetCameraRight() * movementForce;
         forceDirection += move.ReadValue<Vector2>().y * GetCameraForward() * movementForce;
-        
 
         rb.AddForce(forceDirection, ForceMode.Impulse);
         forceDirection = Vector3.zero;
@@ -84,5 +88,38 @@ public class PlayerController : MonoBehaviour
         }
         else
             rb.angularVelocity = Vector3.zero;
+    }
+
+    private void OnCollisionEnter(Collision other)
+    {
+        if(other.gameObject.tag == "Enemy")
+        {
+            if(hpController.points >= hpController.pointsToConvert)
+            {
+                hpController.ConvertHunter();
+                Destroy(other.gameObject);
+            }
+            else 
+            {
+                hpController.TakeDamage(1);
+                rb.AddForce(-transform.forward * 100f, ForceMode.Impulse);
+
+                if(hpController.health == 0) Die();
+            }
+        } 
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.tag == "Collectable")
+        {
+            hpController.AddPoint(1);
+            Destroy(other.gameObject);
+        }
+    }
+
+    private void Die()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

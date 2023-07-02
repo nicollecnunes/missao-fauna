@@ -71,6 +71,7 @@ public class FriendAnimalPatrol : MonoBehaviour
         if(isRotatingLeft) transform.Rotate(transform.up * Time.fixedDeltaTime * -rotationSpeed);
 
         if(isWalking) rb.AddForce(transform.forward * moveSpeed);
+
     }
 
     private IEnumerator Wander()

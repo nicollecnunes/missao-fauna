@@ -19,7 +19,6 @@ public class RandomizarCacadores : MonoBehaviour
             //todo rodar cacadores
 
             GameObject novoCacador = Instantiate(pfb_cacador, posicaoCacador, Quaternion.Euler(0f, 0f, 0f));
-            novoCacador.transform.Rotate(new Vector3(-90, 0, 0));
         }
     }
 }

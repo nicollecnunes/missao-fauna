@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
 {
     // life and points
     private HealthAndPointsController hpController;
+    private QuizScreenController qController;
 
     //input fields
     private ThirdPersonInputAssets playerActionAsset;
@@ -30,6 +31,7 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         hpController = GetComponent<HealthAndPointsController>();
+        qController = GetComponent<QuizScreenController>();
         playerActionAsset = new ThirdPersonInputAssets();
     }
 
@@ -113,6 +115,7 @@ public class PlayerController : MonoBehaviour
     {
         if(other.gameObject.tag == "Collectable")
         {
+            //qController.OpenMenu();
             hpController.AddPoint(1);
             Destroy(other.gameObject);
         }

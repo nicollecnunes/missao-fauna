@@ -4,9 +4,10 @@ using UnityEngine;
 using Quiz;
 using TMPro;
 
-public class QuizMenu : MonoBehaviour
+
+public class QuizScreenController : MonoBehaviour
 {
-    public static bool isPaused = false;
+   public static bool isPaused = false;
     public GameObject quizMenuUI;
     public TMP_Text enunciado, alt1, alt2, alt3;
 
@@ -59,9 +60,9 @@ public class QuizMenu : MonoBehaviour
         alt3.SetText(pgt.alt3);
     }
 
-    public void Start()
+    public void OpenMenu()
     {
-        quizMenuUI.SetActive(false);
+        quizMenuUI.SetActive(true);
         List<Pergunta> listaPerguntas = createData();
         setTexts(selectQuestion(listaPerguntas));
         Time.timeScale = 0f;

@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
     //movement fields 
     private Rigidbody rb;
     private Vector3 forceDirection = Vector3.zero;
+    private Animator anim;
 
     [SerializeField]
     private float movementForce = 1f;
@@ -32,6 +33,7 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         hpController = GetComponent<HealthAndPointsController>();
         qController = GetComponent<QuizScreenController>();
+        anim = GetComponent<Animator>();
         playerActionAsset = new ThirdPersonInputAssets();
     }
 
@@ -52,6 +54,9 @@ public class PlayerController : MonoBehaviour
     {
         forceDirection += move.ReadValue<Vector2>().x * GetCameraRight() * movementForce;
         forceDirection += move.ReadValue<Vector2>().y * GetCameraForward() * movementForce;
+
+        if(forceDirection == Vector3.zero) anim.SetBool("isRunning", false);
+        else anim.SetBool("isRunning", true);
 
         rb.AddForce(forceDirection, ForceMode.Impulse);
         forceDirection = Vector3.zero;

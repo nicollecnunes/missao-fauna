@@ -99,7 +99,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
-        if(other.gameObject.tag == "Enemy")
+        if(other.gameObject.CompareTag("Enemy"))
         {
             if(hpController.points >= hpController.pointsToConvert)
             {
@@ -118,7 +118,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "Collectable")
+        if(other.gameObject.CompareTag("Collectable"))
         {
             Destroy(other.gameObject);
             Debug.Log("tentando abrir o menu");

@@ -53,8 +53,6 @@ public class HealthAndPointsController : MonoBehaviour
 
         points = newValue;
         text.text = newValue.ToString();
-
-        Debug.Log(points);
     }
 
     public void ConvertHunter()

@@ -114,14 +114,21 @@ public class QuizScreenController : MonoBehaviour
         Debug.Log("errado!!!!!!!");
         }
 
-        //option1Button.enabled = false;
-        //option2Button.enabled = false;
-        //option3Button.enabled = false;
+        option1Button.enabled = false;
+        option2Button.enabled = false;
+        option3Button.enabled = false;
         //Debug.Log("sleep!!!!!!!");
-        //Thread.Sleep(2000);
-        BackToGame();
+        StartCoroutine("WaitToClose");
+        
         
     }
+
+   public IEnumerator WaitToClose() {
+   Debug.Log("waiting.....;");
+   yield return new WaitForSecondsRealtime(2);
+    BackToGame();
+   Debug.Log("backing.....;");
+} 
 
 
     public void BackToGame()

@@ -117,10 +117,8 @@ public class QuizScreenController : MonoBehaviour
         option1Button.enabled = false;
         option2Button.enabled = false;
         option3Button.enabled = false;
-        //Debug.Log("sleep!!!!!!!");
         StartCoroutine("WaitToClose");
-        
-        
+ 
     }
 
    public IEnumerator WaitToClose() {

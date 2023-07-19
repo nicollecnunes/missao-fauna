@@ -96,6 +96,7 @@ public class QuizScreenController : MonoBehaviour
         option1Button.onClick.AddListener(() => CheckAnswer(1, respostaCerta));
         option2Button.onClick.AddListener(() => CheckAnswer(2, respostaCerta));
         option3Button.onClick.AddListener(() => CheckAnswer(3, respostaCerta));
+        Debug.Log("hit");
     }
 
     public void CheckAnswer(int selectedOption, int resposta)

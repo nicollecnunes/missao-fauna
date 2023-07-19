@@ -64,12 +64,16 @@ public class QuizScreenController : MonoBehaviour
         alt3.SetText(pgt.alt3);
     }
 
+    private void Start() {
+        quizMenuUI.SetActive(false);
+    }
+
     public void OpenMenu()
     {
         Debug.Log("abroiu o menu");
         List<Pergunta> listaPerguntas = createData();
         setTexts(selectQuestion(listaPerguntas));
-        //quizMenuUI.SetActive(true);
+        quizMenuUI.SetActive(true);
         Time.timeScale = 0f;
         isPaused = true;
 

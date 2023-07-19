@@ -24,7 +24,7 @@ public class RandomicSpawn : MonoBehaviour
 
             posX = Random.Range(-areaX/2, areaX/2);
             posZ = Random.Range(-areaZ/2, areaZ/2);
-            Vector3 posicaoPapel = transform.position + new Vector3(posX, 0.5f, posZ);
+            Vector3 posicaoPapel = transform.position + new Vector3(posX, 0f, posZ);
 
             GameObject novoPapel = Instantiate(pfb_papeis, posicaoPapel, Quaternion.Euler(0f, 0f, 0f));
         }

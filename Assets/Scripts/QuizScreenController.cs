@@ -4,12 +4,12 @@ using UnityEngine;
 using Quiz;
 using TMPro;
 using UnityEngine.UI;
-
+using System.Threading;
 
 public class QuizScreenController : MonoBehaviour
 {
    public static bool isPaused = false;
-    public GameObject quizMenuUI;
+    public GameObject quizMenuUI, rightFeedback, wrongFeedback;
     public TMP_Text enunciado, alt1, alt2, alt3;
     public Button option1Button, option2Button, option3Button;
     private int indexPerguntaSelecionada;
@@ -50,6 +50,11 @@ public class QuizScreenController : MonoBehaviour
         return perguntas;
     }
 
+     private void Awake()
+    {
+        hpController = GetComponent<HealthAndPointsController>();
+    }
+
     public Pergunta selectQuestion(List<Pergunta> lista)
     {
         indexPerguntaSelecionada = Random.Range(0, lista.Count);
@@ -72,31 +77,49 @@ public class QuizScreenController : MonoBehaviour
 
     public void OpenMenu()
     {
-        quizMenuUI.SetActive(true);
-        Debug.Log("abroiu o menu");
+      
         List<Pergunta> listaPerguntas = createData();
         setTexts(selectQuestion(listaPerguntas));
-        Debug.Log("aparecendo");
+        rightFeedback.SetActive(false);
         quizMenuUI.SetActive(true);
+        wrongFeedback.SetActive(false);
         Time.timeScale = 0f;
         isPaused = true;
+
+        option1Button.enabled = true;
+        option2Button.enabled = true;
+        option3Button.enabled = true;
 
         int respostaCerta = listaPerguntas[indexPerguntaSelecionada].resposta;
         Debug.Log(respostaCerta);
 
-        //option1Button.onClick.AddListener(() => CheckAnswer(1, respostaCerta));
-        //option2Button.onClick.AddListener(() => CheckAnswer(2, respostaCerta));
-        //option3Button.onClick.AddListener(() => CheckAnswer(3, respostaCerta));
+        option1Button.onClick.AddListener(() => CheckAnswer(1, respostaCerta));
+        option2Button.onClick.AddListener(() => CheckAnswer(2, respostaCerta));
+        option3Button.onClick.AddListener(() => CheckAnswer(3, respostaCerta));
     }
 
     public void CheckAnswer(int selectedOption, int resposta)
     {
+        Debug.Log("checando!!!!!!!");
         if (selectedOption == resposta)
         {
             hpController.AddPoint(1);
-            //todo criar alguma coisa que informe que acertou
+            rightFeedback.SetActive(true);
+            wrongFeedback.SetActive(false);
             Debug.Log("certo!!!!!!!");
         }
+        else{
+        rightFeedback.SetActive(false);
+        wrongFeedback.SetActive(true);
+        Debug.Log("errado!!!!!!!");
+        }
+
+        //option1Button.enabled = false;
+        //option2Button.enabled = false;
+        //option3Button.enabled = false;
+        //Debug.Log("sleep!!!!!!!");
+        //Thread.Sleep(2000);
+        BackToGame();
         
     }
 

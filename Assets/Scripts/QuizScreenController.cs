@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Quiz;
 using TMPro;
+using UnityEngine.UI;
 
 
 public class QuizScreenController : MonoBehaviour
@@ -10,6 +11,9 @@ public class QuizScreenController : MonoBehaviour
    public static bool isPaused = false;
     public GameObject quizMenuUI;
     public TMP_Text enunciado, alt1, alt2, alt3;
+    public Button option1Button, option2Button, option3Button;
+    private int indexPerguntaSelecionada;
+    private HealthAndPointsController hpController;
 
     public List<Pergunta> createData()
     {
@@ -48,8 +52,8 @@ public class QuizScreenController : MonoBehaviour
 
     public Pergunta selectQuestion(List<Pergunta> lista)
     {
-        int index = Random.Range(0, lista.Count);
-        return lista[index];
+        indexPerguntaSelecionada = Random.Range(0, lista.Count);
+        return lista[indexPerguntaSelecionada];
     }
 
     public void setTexts(Pergunta pgt)
@@ -62,12 +66,32 @@ public class QuizScreenController : MonoBehaviour
 
     public void OpenMenu()
     {
-        quizMenuUI.SetActive(true);
+        Debug.Log("abroiu o menu");
         List<Pergunta> listaPerguntas = createData();
         setTexts(selectQuestion(listaPerguntas));
+        //quizMenuUI.SetActive(true);
         Time.timeScale = 0f;
         isPaused = true;
+
+        int respostaCerta = listaPerguntas[indexPerguntaSelecionada].resposta;
+        Debug.Log(respostaCerta);
+
+        //option1Button.onClick.AddListener(() => CheckAnswer(1, respostaCerta));
+        //option2Button.onClick.AddListener(() => CheckAnswer(2, respostaCerta));
+        //option3Button.onClick.AddListener(() => CheckAnswer(3, respostaCerta));
     }
+
+    public void CheckAnswer(int selectedOption, int resposta)
+    {
+        if (selectedOption == resposta)
+        {
+            hpController.AddPoint(1);
+            //todo criar alguma coisa que informe que acertou
+            Debug.Log("certo!!!!!!!");
+        }
+        
+    }
+
 
     public void BackToGame()
     {

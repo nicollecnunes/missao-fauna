@@ -115,9 +115,8 @@ public class PlayerController : MonoBehaviour
     {
         if(other.gameObject.tag == "Collectable")
         {
-            //qController.OpenMenu();
-            hpController.AddPoint(1);
             Destroy(other.gameObject);
+            qController.OpenMenu();
         }
     }
 

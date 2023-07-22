@@ -11,9 +11,18 @@ public class HunterController : MonoBehaviour
     private RaycastHit hit;
     private Rigidbody rb;
 
+    [SerializeField] LayerMask groundLayer;
     [SerializeField] float sightRange = 12;
     [SerializeField] float detectionRange = 7;
     [SerializeField] float speed = 4.0f;
+    [SerializeField] float range;
+
+    Vector3 destPoint;
+    Vector3 directionToGo;
+    bool walkpointSet = false;
+    bool isWalking = false;
+    float walkTimeTolerance = 7;
+    float delayToRestartWalking = 3;
 
     private bool hasTarget = false;
 
@@ -28,17 +37,59 @@ public class HunterController : MonoBehaviour
         if(!hasTarget)
         {
             if(LookForPrey()) StartCoroutine(Chase());
-            else Patrol();
+            else 
+            {
+                Patrol();
+            }
         } 
         else 
         {
-            StartCoroutine(Chase());
+            KeepChasing();
         }
     }
 
     private void Patrol()
     {
-        //Patrol logics
+        if(!walkpointSet && delayToRestartWalking <= 0)
+        {
+            float z = Random.Range(-range, range);
+            float x = Random.Range(-range, range);
+
+            destPoint = new Vector3(transform.position.x + x, transform.position.y, transform.position.z + z);
+            walkpointSet = true;
+            isWalking = true;
+            walkTimeTolerance = 7;
+        }
+
+        else if(isWalking)
+        {
+            anim.SetBool("isWalking", true);
+            var heading = destPoint - transform.position;
+            var distance = heading.magnitude;
+            var direction = heading / distance;
+
+            Vector3 move = new Vector3(direction.x * speed, 0, direction.z * speed);
+            transform.forward = move;
+            rb.velocity = move;
+        }
+
+        if(isWalking && Vector3.Distance(destPoint, transform.position) < 1) 
+        {
+            anim.SetBool("isWalking", false);
+            isWalking = false; 
+            walkpointSet = false;
+            delayToRestartWalking = 3;
+        }
+
+        if(walkTimeTolerance <= 0)
+        {
+            walkTimeTolerance = 7;
+            destPoint.x = -destPoint.x;
+            destPoint.z = -destPoint.z;
+        }
+
+        walkTimeTolerance -= Time.deltaTime;
+        delayToRestartWalking -= Time.deltaTime;
     }
 
     private bool LookForPrey()
@@ -72,6 +123,20 @@ public class HunterController : MonoBehaviour
         transform.forward = move;
         
         yield return new WaitForSeconds(1.0f);
+        rb.velocity = move;
+
+        StartCoroutine(CheckPreySight());
+    }
+
+    private void KeepChasing()
+    {
+        var heading = target.transform.position - transform.position;
+        var distance = heading.magnitude;
+        var direction = heading / distance;
+
+        Vector3 move = new Vector3(direction.x * speed, 0, direction.z * speed);
+        transform.forward = move;
+        
         rb.velocity = move;
 
         StartCoroutine(CheckPreySight());

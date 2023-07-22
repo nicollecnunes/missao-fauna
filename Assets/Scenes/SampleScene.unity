@@ -7894,7 +7894,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 782652579}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8003556d82d5c0a2e9294f0f5ac2e87a, type: 3}
   m_Name: 
@@ -15674,7 +15674,7 @@ GameObject:
   - component: {fileID: 1954033285}
   - component: {fileID: 1954033284}
   - component: {fileID: 1954033288}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: Ground_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17950,6 +17950,14 @@ PrefabInstance:
     - target: {fileID: 5979859670371156478, guid: 0ddfe40254191f8d2aedee6f1f1bee61, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6158113721082240879, guid: 0ddfe40254191f8d2aedee6f1f1bee61, type: 3}
+      propertyPath: range
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 6158113721082240879, guid: 0ddfe40254191f8d2aedee6f1f1bee61, type: 3}
+      propertyPath: groundLayer.m_Bits
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6464752461182147396, guid: 0ddfe40254191f8d2aedee6f1f1bee61, type: 3}
       propertyPath: m_Name

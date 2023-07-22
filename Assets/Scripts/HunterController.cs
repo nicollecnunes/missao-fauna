@@ -50,7 +50,7 @@ public class HunterController : MonoBehaviour
 
     private void Patrol()
     {
-        if(!walkpointSet && delayToRestartWalking <= 0)
+        if(!walkpointSet && delayToRestartWalking <= 0 && !anim.GetBool("defeated"))
         {
             float z = Random.Range(-range, range);
             float x = Random.Range(-range, range);
@@ -61,9 +61,10 @@ public class HunterController : MonoBehaviour
             walkTimeTolerance = 7;
         }
 
-        else if(isWalking)
+        if(isWalking)
         {
             anim.SetBool("isWalking", true);
+            anim.SetBool("isRunning", false);
             var heading = destPoint - transform.position;
             var distance = heading.magnitude;
             var direction = heading / distance;
@@ -83,9 +84,7 @@ public class HunterController : MonoBehaviour
 
         if(walkTimeTolerance <= 0)
         {
-            walkTimeTolerance = 7;
-            destPoint.x = -destPoint.x;
-            destPoint.z = -destPoint.z;
+            walkpointSet = false;
         }
 
         walkTimeTolerance -= Time.deltaTime;
@@ -117,12 +116,14 @@ public class HunterController : MonoBehaviour
         var direction = heading / distance;
 
         anim.SetBool("isRunning", true);
+        anim.SetBool("isWalking", false);
 
 
         Vector3 move = new Vector3(direction.x * speed, 0, direction.z * speed);
         transform.forward = move;
         
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(2f);
+
         rb.velocity = move;
 
         StartCoroutine(CheckPreySight());
@@ -154,16 +155,14 @@ public class HunterController : MonoBehaviour
             if(possibleTarget.gameObject.tag == "Player") isPlayerHere = true;
         }
 
-        Debug.Log(isPlayerHere);
-
         if(!isPlayerHere)
         {
             target = null;
             hasTarget = false;
             rb.velocity = new Vector3(0,0,0);
-            anim.SetTrigger("defeated");
-            yield return new WaitForSeconds(3.0f);
-            anim.ResetTrigger("defeated");
+            anim.SetBool("defeated", true);
+            yield return new WaitForSeconds(3f);
+            anim.SetBool("defeated", false);
         }
     }
 }

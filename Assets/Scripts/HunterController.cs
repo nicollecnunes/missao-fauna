@@ -14,7 +14,8 @@ public class HunterController : MonoBehaviour
     [SerializeField] LayerMask groundLayer;
     [SerializeField] float sightRange = 12;
     [SerializeField] float detectionRange = 7;
-    [SerializeField] float speed = 4.0f;
+    [SerializeField] float walkSpeed = 3.0f;
+    [SerializeField] float chaseSpeed = 6.0f;
     [SerializeField] float range;
 
     Vector3 destPoint;
@@ -68,6 +69,7 @@ public class HunterController : MonoBehaviour
             var heading = destPoint - transform.position;
             var distance = heading.magnitude;
             var direction = heading / distance;
+            float speed = walkSpeed;
 
             Vector3 move = new Vector3(direction.x * speed, 0, direction.z * speed);
             transform.forward = move;
@@ -114,6 +116,7 @@ public class HunterController : MonoBehaviour
         var heading = target.transform.position - transform.position;
         var distance = heading.magnitude;
         var direction = heading / distance;
+        float speed = chaseSpeed;
 
         anim.SetBool("isRunning", true);
         anim.SetBool("isWalking", false);
@@ -134,6 +137,7 @@ public class HunterController : MonoBehaviour
         var heading = target.transform.position - transform.position;
         var distance = heading.magnitude;
         var direction = heading / distance;
+        float speed = chaseSpeed;
 
         Vector3 move = new Vector3(direction.x * speed, 0, direction.z * speed);
         transform.forward = move;

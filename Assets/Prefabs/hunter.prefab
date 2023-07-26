@@ -1415,9 +1415,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0fcbe304f3c4864699c86499ea5938b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 8
   sightRange: 7
   detectionRange: 5
-  speed: 4
+  walkSpeed: 2
+  chaseSpeed: 4
+  range: 12
 --- !u!1 &6517556735483967519
 GameObject:
   m_ObjectHideFlags: 0

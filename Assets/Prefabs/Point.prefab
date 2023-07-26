@@ -167,7 +167,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   xRotate: 0
-  yRotate: 2
+  yRotate: 1
   zRotate: 0
 --- !u!1 &8668010101952744172
 GameObject:

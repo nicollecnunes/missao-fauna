@@ -8,11 +8,14 @@ public class RandomicSpawn : MonoBehaviour
     public GameObject pfb_papeis;
     public int minCacador, maxCacador;
     public float areaX, areaZ;
+    [SerializeField] private bool canRespawnHunter;
+    [SerializeField] private bool canRespawnPaper;
 
     void Start()
     {
-        int qtdCacadores = Random.Range(minCacador, maxCacador + 1);
-        int qtdPapel = qtdCacadores;
+        int qtdCacadores = 0, qtdPapel = 0;
+        if(canRespawnHunter) qtdCacadores = Random.Range(minCacador, maxCacador + 1);
+        if(canRespawnPaper) qtdPapel = qtdCacadores;
         
         for (int i = 0; i < qtdCacadores; i++)
         {

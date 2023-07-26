@@ -2794,7 +2794,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 4dec9a153b0ce3f4f89083f63426ffd9, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 553fbfd9814f09344aaa755b75ef6f25, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.647
   m_Pitch: 1
@@ -6497,7 +6497,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 782652579}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8003556d82d5c0a2e9294f0f5ac2e87a, type: 3}
   m_Name: 
@@ -6508,6 +6508,8 @@ MonoBehaviour:
   maxCacador: 20
   areaX: 60
   areaZ: 60
+  canRespawnHunter: 1
+  canRespawnPaper: 1
 --- !u!4 &782652581
 Transform:
   m_ObjectHideFlags: 0

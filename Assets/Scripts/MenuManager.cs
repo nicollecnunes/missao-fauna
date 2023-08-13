@@ -8,6 +8,7 @@ public class MenuManager : MonoBehaviour
     [SerializeField] private string nomeCenaInicial;
     // [SerializeField] private GameObject painelMenuInicial;
     // [SerializeField] private GameObject painelOpcoes;
+
     public void Jogar()
     {
         SceneManager.LoadScene(nomeCenaInicial);

@@ -8,6 +8,7 @@ public class StartGame : MonoBehaviour
 
     void Start()
     {
-        timer.SetDuration(timer.time).Begin();    
+        timer.SetTime();
+        timer.SetDuration(timer.GetTime()).Begin();    
     }
 }

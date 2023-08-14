@@ -77,7 +77,6 @@ public class QuizScreenController : MonoBehaviour
 
     public void OpenMenu()
     {
-      
         List<Pergunta> listaPerguntas = createData();
         setTexts(selectQuestion(listaPerguntas));
         rightFeedback.SetActive(false);
@@ -101,6 +100,7 @@ public class QuizScreenController : MonoBehaviour
 
     public void CheckAnswer(int selectedOption, int resposta)
     {
+        Debug.Log(selectedOption);
         Debug.Log("checando!!!!!!!");
         if (selectedOption == resposta)
         {
@@ -110,9 +110,9 @@ public class QuizScreenController : MonoBehaviour
             Debug.Log("certo!!!!!!!");
         }
         else{
-        rightFeedback.SetActive(false);
-        wrongFeedback.SetActive(true);
-        Debug.Log("errado!!!!!!!");
+            rightFeedback.SetActive(false);
+            wrongFeedback.SetActive(true);
+            Debug.Log("errado!!!!!!!");
         }
 
         option1Button.enabled = false;
@@ -122,12 +122,12 @@ public class QuizScreenController : MonoBehaviour
  
     }
 
-   public IEnumerator WaitToClose() {
-   Debug.Log("waiting.....;");
-   yield return new WaitForSecondsRealtime(2);
-    BackToGame();
-   Debug.Log("backing.....;");
-} 
+    public IEnumerator WaitToClose() {
+        Debug.Log("waiting.....;");
+        yield return new WaitForSecondsRealtime(2);
+        BackToGame();
+        Debug.Log("backing.....;");
+    } 
 
 
     public void BackToGame()

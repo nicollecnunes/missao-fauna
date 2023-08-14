@@ -10,7 +10,7 @@ public class GameTime : MonoBehaviour {
    [SerializeField] private Image uiFillImage ;
    [SerializeField] private TMP_Text uiText ;
    
-   public int time;
+   private int time;
 
    public int Duration { get; private set; }
 
@@ -23,6 +23,20 @@ public class GameTime : MonoBehaviour {
    private UnityAction<int> onTimerChangeAction ;
    private UnityAction onTimerEndAction ;
    private UnityAction<bool> onTimerPauseAction ;
+
+   public void SetTime() {
+      int dificuldade = PlayerPrefs.GetInt("NivelDeDificuldade", 0);
+      
+      if(dificuldade == 0) time = 150;
+      else if(dificuldade == 1) time = 120;
+      else if(dificuldade == 2) time = 90;
+      else time = 60;
+   }
+
+   public int GetTime()
+   {
+      return time;
+   }
 
    private void Awake () {
       ResetTimer () ;

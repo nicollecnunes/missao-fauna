@@ -24,6 +24,8 @@ public class HealthAndPointsController : MonoBehaviour
     private void Start()
     {
         text.text = "0";
+        int dificuldade = PlayerPrefs.GetInt("NivelDeDificuldade", 0);
+        if(dificuldade >= 2) pointsToConvert = 2;
     }
 
     private void Update()
@@ -49,7 +51,10 @@ public class HealthAndPointsController : MonoBehaviour
     public void AddPoint(int pointsToAdd)
     {
         int currentValue = Int32.Parse(text.text);
+        Debug.Log(currentValue);
+        Debug.Log(pointsToAdd);
         int newValue = currentValue + pointsToAdd;
+        Debug.Log(newValue);
 
         points = newValue;
         text.text = newValue.ToString();

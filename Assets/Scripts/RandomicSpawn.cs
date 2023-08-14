@@ -6,7 +6,6 @@ public class RandomicSpawn : MonoBehaviour
 {
     public GameObject pfb_cacador;
     public GameObject pfb_papeis;
-    public int minCacador, maxCacador;
     public float areaX, areaZ;
     [SerializeField] private bool canRespawnHunter;
     [SerializeField] private bool canRespawnPaper;
@@ -14,8 +13,20 @@ public class RandomicSpawn : MonoBehaviour
     void Start()
     {
         int qtdCacadores = 0, qtdPapel = 0;
-        qtdCacadores = Random.Range(minCacador, maxCacador + 1);
-        qtdPapel = qtdCacadores;
+
+        int dificuldade = PlayerPrefs.GetInt("NivelDeDificuldade", 0);
+
+        if(dificuldade <= 2) 
+        {
+            qtdCacadores = 5;
+            qtdPapel = 5;
+
+            if(dificuldade == 2) qtdPapel = 10;
+        } 
+        else {
+            qtdCacadores = 10;
+            qtdPapel = 20;
+        }
         
         if(canRespawnHunter)
         {

@@ -6387,7 +6387,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uiFillImage: {fileID: 920068810}
   uiText: {fileID: 950084800}
-  time: 120
 --- !u!1001 &399361954
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12605,8 +12604,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pfb_cacador: {fileID: 6464752461182147396, guid: 0ddfe40254191f8d2aedee6f1f1bee61, type: 3}
   pfb_papeis: {fileID: 8667761770584320074, guid: f296a3f7eaaea5047aa2cad1ce53041a, type: 3}
-  minCacador: 15
-  maxCacador: 20
   areaX: 60
   areaZ: 60
   canRespawnHunter: 0

@@ -29,6 +29,11 @@ public class MenuManager : MonoBehaviour
     }
     public void Sair()
     {
-        Application.Quit(); //fecha o jogo
+        Application.Quit(); 
+    }
+
+    public void VoltarMenu()
+    {
+        SceneManager.LoadScene(0);
     }
 }

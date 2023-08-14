@@ -128,7 +128,7 @@ public class GameTime : MonoBehaviour {
       if (onTimerEndAction != null)
          onTimerEndAction.Invoke () ;
 
-      SceneManager.LoadScene(0);
+      SceneManager.LoadScene(2);
    }
 
 

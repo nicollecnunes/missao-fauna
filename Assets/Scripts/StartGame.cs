@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class StartGame : MonoBehaviour
 {
@@ -10,5 +11,19 @@ public class StartGame : MonoBehaviour
     {
         timer.SetTime();
         timer.SetDuration(timer.GetTime()).Begin();    
+    }
+
+    void Update()
+    {
+        if(CheckEnemiesConverted()) SceneManager.LoadScene(3);
+    }
+
+    private bool CheckEnemiesConverted()
+    {
+        GameObject[] hunters = GameObject.FindGameObjectsWithTag("Enemy");
+
+        if(hunters.Length == 0) return true;
+
+        return false;
     }
 }

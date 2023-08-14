@@ -97,7 +97,7 @@ public class AnimalController : MonoBehaviour
         hitColliders = Physics.OverlapSphere(transform.position, detectionRange);
         foreach(var possibleTarget in hitColliders)
         {
-            if(possibleTarget.tag == "Player")
+            if(possibleTarget.tag == "Enemy")
             {
                 target = possibleTarget.gameObject;
                 hasTarget = true;
@@ -137,7 +137,7 @@ public class AnimalController : MonoBehaviour
         hitColliders = Physics.OverlapSphere(transform.position, sightRange);
         foreach(var possibleTarget in hitColliders)
         {
-            if(possibleTarget.gameObject.tag == "Player") isPlayerHere = true;
+            if(possibleTarget.gameObject.tag == "Enemy") isPlayerHere = true;
         }
 
         if(!isPlayerHere)
@@ -147,4 +147,12 @@ public class AnimalController : MonoBehaviour
             rb.velocity = new Vector3(0,0,0);
         }
     }
+
+    private void OnCollisionEnter(Collision other)
+    {
+        if(other.gameObject.CompareTag("Enemy"))
+        {
+            Destroy(gameObject);
+        } 
+    } 
 }

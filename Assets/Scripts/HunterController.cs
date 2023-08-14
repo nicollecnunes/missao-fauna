@@ -98,7 +98,7 @@ public class HunterController : MonoBehaviour
         hitColliders = Physics.OverlapSphere(transform.position, detectionRange);
         foreach(var possibleTarget in hitColliders)
         {
-            if(possibleTarget.tag == "Player")
+            if(possibleTarget.tag == "Player" || possibleTarget.tag == "Animal")
             {
                 target = possibleTarget.gameObject;
                 hasTarget = true;
@@ -152,14 +152,16 @@ public class HunterController : MonoBehaviour
         hitColliders = Physics.OverlapSphere(transform.position, sightRange);
 
         bool isPlayerHere = false;
+        bool isAnimalHere = false;
 
         hitColliders = Physics.OverlapSphere(transform.position, sightRange);
         foreach(var possibleTarget in hitColliders)
         {
             if(possibleTarget.gameObject.tag == "Player") isPlayerHere = true;
+            else if(possibleTarget.gameObject.tag == "Animal") isAnimalHere = true;
         }
 
-        if(!isPlayerHere)
+        if(!isPlayerHere && !isAnimalHere)
         {
             target = null;
             hasTarget = false;
@@ -169,4 +171,14 @@ public class HunterController : MonoBehaviour
             anim.SetBool("defeated", false);
         }
     }
+
+    private void OnCollisionEnter(Collision other)
+    {
+        if(other.gameObject.CompareTag("Animal"))
+        {
+            target = null;
+            hasTarget = false;
+            rb.velocity = new Vector3(0,0,0);
+        } 
+    } 
 }

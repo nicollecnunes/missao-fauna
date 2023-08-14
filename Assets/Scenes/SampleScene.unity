@@ -12606,7 +12606,7 @@ MonoBehaviour:
   pfb_papeis: {fileID: 8667761770584320074, guid: f296a3f7eaaea5047aa2cad1ce53041a, type: 3}
   areaX: 60
   areaZ: 60
-  canRespawnHunter: 0
+  canRespawnHunter: 1
   canRespawnPaper: 1
 --- !u!4 &782652581
 Transform:
@@ -34099,7 +34099,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 919132148639318358}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.77, y: 0.03, z: 8.7}
+  m_LocalPosition: {x: -6.28, y: 0.03, z: 8.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -38722,7 +38722,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5979859670371156478, guid: 0ddfe40254191f8d2aedee6f1f1bee61, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.82
+      value: -0.34
       objectReference: {fileID: 0}
     - target: {fileID: 5979859670371156478, guid: 0ddfe40254191f8d2aedee6f1f1bee61, type: 3}
       propertyPath: m_LocalPosition.y
@@ -38730,7 +38730,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5979859670371156478, guid: 0ddfe40254191f8d2aedee6f1f1bee61, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 22.77
+      value: 6.16
       objectReference: {fileID: 0}
     - target: {fileID: 5979859670371156478, guid: 0ddfe40254191f8d2aedee6f1f1bee61, type: 3}
       propertyPath: m_LocalRotation.w

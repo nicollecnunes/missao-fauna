@@ -14,6 +14,7 @@ public class QuizScreenController : MonoBehaviour
     public Button option1Button, option2Button, option3Button;
     private int indexPerguntaSelecionada;
     private HealthAndPointsController hpController;
+    private bool gotItRight = false;
 
     public List<Pergunta> createData()
     {
@@ -107,12 +108,14 @@ public class QuizScreenController : MonoBehaviour
             hpController.AddPoint(1);
             rightFeedback.SetActive(true);
             wrongFeedback.SetActive(false);
+            gotItRight = true;
             Debug.Log("certo!!!!!!!");
         }
         else{
             rightFeedback.SetActive(false);
             wrongFeedback.SetActive(true);
             Debug.Log("errado!!!!!!!");
+            gotItRight = false;
         }
 
         option1Button.onClick.RemoveAllListeners();
@@ -129,7 +132,8 @@ public class QuizScreenController : MonoBehaviour
     public IEnumerator WaitToClose() {
         Debug.Log("waiting.....;");
         yield return new WaitForSecondsRealtime(2);
-        BackToGame();
+        if(gotItRight) BackToGame();
+        else OpenMenu();
         Debug.Log("backing.....;");
     } 
 

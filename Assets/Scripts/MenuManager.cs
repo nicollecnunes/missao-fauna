@@ -9,10 +9,13 @@ public class MenuManager : MonoBehaviour
     [SerializeField] private GameObject painelMenuInicial;
     [SerializeField] private GameObject painelOpcoes;
 
+    void Start()
+    {
+        painelOpcoes.SetActive(false);
+    }
     public void Jogar()
     {
         SceneManager.LoadScene(nomeCenaInicial);
-        painelOpcoes.SetActive(false);
     }
     public void AbrirOpcoes()
     {

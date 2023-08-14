@@ -115,6 +115,10 @@ public class QuizScreenController : MonoBehaviour
             Debug.Log("errado!!!!!!!");
         }
 
+        option1Button.onClick.RemoveAllListeners();
+        option2Button.onClick.RemoveAllListeners();
+        option3Button.onClick.RemoveAllListeners();
+
         option1Button.enabled = false;
         option2Button.enabled = false;
         option3Button.enabled = false;
